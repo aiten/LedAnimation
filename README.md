@@ -3,8 +3,8 @@ To run (and compile) all the sketches, please:
 * Set Sketchbook location (Arduino Menu: File:Preferences...) to this folder
 * Install additional libraries:
   * Adafruit_GFX Library (by Adafruit) - with dependencies, e.g. Adafruit BusIO
-* FastLED (by Daniel Garcia, Version >= 3.6.0)
-* SmartMatrix (by Louis Beaudoin, Version 4.0.3) 
+  * FastLED (by Daniel Garcia, Version >= 3.6.0)
+  * SmartMatrix (by Louis Beaudoin, Version 4.0.3) 
 
 
 Sketch:  
