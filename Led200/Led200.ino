@@ -66,7 +66,7 @@ CTicker ticker1("Le", CTicker::ScrollSingleCharFadeInRightFadeOutRight);
 CTicker ticker2("on", CTicker::ScrollSingleCharFadeInRightFadeOutLeft);
 CTicker ticker3("di", CTicker::ScrollSingleCharFadeInRightFadeOutUp);
 CTicker ticker4("ng", CTicker::ScrollSingleCharFadeInRightFadeOutDown);
-CTicker tickerCR("by HTL Leonding 2023", CTicker::ScrollFromRight, 1000);
+CTicker tickerCR("by HTL Leonding 2025", CTicker::ScrollFromRight, 1000);
 
 CMySample sample;
 

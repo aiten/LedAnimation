@@ -78,6 +78,7 @@ CCounter counter4(0, 9, 1, 255, 2000);
 CTicker tickerABC("a\344bcdefghijklmno\366pqrstu\374vwxyzA\304BCDEFGHIJKLMNO\326PQRSTU\334VWXYZ-+*.!/,?()0123456789", CTicker::ScrollFromRight);
 CTicker tickerHTL("HTL Leonding", CTicker::ScrollFromRight);
 CTicker robo("Roboterfuehrerschein");
+CTicker tadot("Tag der offenen Tuer 2025");
 
 CAnimation *animations[] =
     {
@@ -85,6 +86,7 @@ CAnimation *animations[] =
         //NULL,
         &tickerHTL,
         &robo,
+        &tadot,        
         &box,
         &tickerHTL,
         &robo,
