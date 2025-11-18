@@ -400,3 +400,13 @@ FodyWeavers.xsd
 /libraries/Adafruit_GFX_Library
 /libraries/FastLED
 /libraries/SmartMatrix
+/libraries/Adafruit_LIS3DH
+/libraries/Adafruit_NeoPixel
+/libraries/Adafruit_PixelDust
+/libraries/Adafruit_Protomatter
+/libraries/Adafruit_SPIFlash
+/libraries/Adafruit_TinyUSB_Library
+/libraries/Adafruit_Unified_Sensor
+/libraries/AnimatedGIF
+/libraries/SdFat_-_Adafruit_Fork
+/libraries/MIDI_Library
