@@ -69,6 +69,30 @@
     15  OE  25  LED Drivers' Output Enable
     16  GND GND Ground
     */ 
+
+  //#define ADAFRUIT_MATRIX_PORTAL
+  #ifdef ADAFRUIT_MATRIX_PORTAL
+
+    //Pinout see: https://learn.adafruit.com/assets/140086
+
+    #define R1_PIN  GPIO_NUM_42
+    #define G1_PIN  GPIO_NUM_41
+    #define B1_PIN  GPIO_NUM_40
+    #define R2_PIN  GPIO_NUM_38
+    #define G2_PIN  GPIO_NUM_39
+    #define B2_PIN  GPIO_NUM_37
+
+    #define A_PIN   GPIO_NUM_45
+    #define B_PIN   GPIO_NUM_36
+    #define C_PIN   GPIO_NUM_48
+    #define D_PIN   GPIO_NUM_35
+    #define E_PIN   GPIO_NUM_21
+    #define LAT_PIN GPIO_NUM_47
+    #define OE_PIN  GPIO_NUM_14
+
+    #define CLK_PIN GPIO_NUM_2
+
+  #else
     #define R1_PIN  GPIO_NUM_2
     #define G1_PIN  GPIO_NUM_15
     #define B1_PIN  GPIO_NUM_4
@@ -85,6 +109,8 @@
     #define OE_PIN  GPIO_NUM_25
 
     #define CLK_PIN GPIO_NUM_22
+
+#endif
 
 #else
 #pragma GCC error "Multiple MatrixHardware*.h files included"

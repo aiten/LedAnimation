@@ -1,4 +1,6 @@
 // for esp32 (Vesion 2.0.x) => https://github.com/pixelmatix/SmartMatrix/issues/171
+// => copy some includes to esp32_i2s_parallel.c
+// if kMatrixWidth > 128 use 1.0.6 (otherwie some memory error with 3.x)
 
 #define USE_ADAFRUIT_GFX_LAYERS
 

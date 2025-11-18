@@ -59,8 +59,6 @@ public:
 		return _askContinue.Delay(delayMs);
 	}
 
-	void Flush();
-
 	Adafruit_GFX* GFX() { return _graphics->GFX(); }
 	GFXExtension* Graphic() { return _graphics; }
 
