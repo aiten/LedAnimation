@@ -216,7 +216,7 @@ void CBall::Show()
 			backcolold    = backcolors[backcolorsidx];
 			backcolorsidx = (backcolorsidx + 1) % (sizeof(backcolors) / sizeof(uint16_t));
 
-			if (!Delay(1000) || _exitIfAll)
+			if (!ShowAndDelay(1000) || _exitIfAll)
 			{
 				return;
 			}
@@ -227,7 +227,7 @@ void CBall::Show()
 			}
 		}
 
-		if (!Delay(0))
+		if (!ShowAndDelay(0))
 		{
 			return;
 		}

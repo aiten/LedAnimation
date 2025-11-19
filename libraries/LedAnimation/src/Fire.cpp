@@ -135,7 +135,7 @@ void CFire::Show()
 			CalcFire(&heat[ofs * sizeY], ofs, sizeX, sizeY);
 		}
 
-		if (!Delay(delayTime))
+		if (!ShowAndDelay(delayTime))
 			return;
 	}
 }

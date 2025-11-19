@@ -149,7 +149,7 @@ public:
 				break;
 			}
 
-			if (!Delay(delay))
+			if (!ShowAndDelay(delay))
 				return;
 		}
 	}

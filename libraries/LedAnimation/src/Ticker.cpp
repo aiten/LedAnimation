@@ -26,7 +26,7 @@ uint16_t CTicker::Gap(uint16_t delayTime)
 	for (uint8_t i = 0; i < Graphic()->GetCharSizeMult(); i++)
 	{
 		Graphic()->ScrollLeft(_fillColor);
-		Delay(delayTime);
+		ShowAndDelay(delayTime);
 	}
 
 	return NextPallet16Color(_textPalletColor);
@@ -73,7 +73,7 @@ void CTicker::Show()
 		{
 			uint8_t dist = (GFX()->width() - drawSize) / 2;
 			Graphic()->ScrollRangeLeft(dist, delayTimeMove, GetAskContinue(), _fillColor);
-			if (!Delay(_delayms))
+			if (!ShowAndDelay(_delayms))
 				return;
 
 			switch (_style)

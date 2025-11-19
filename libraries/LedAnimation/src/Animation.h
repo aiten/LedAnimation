@@ -29,6 +29,8 @@ private:
 
 	CAskContinue _askContinue;
 
+	uint32_t _nextGfxShowTime = 0;
+
 public:
 	static void InitGlobal(GFXExtension* graphics)
 	{
@@ -54,8 +56,21 @@ public:
 	void SetAskContinue(CAnimation* animation) { _askContinue = animation->_askContinue; }
 	bool AskContinue() const { return _askContinue.AskContinue(); }
 
-	bool Delay(uint32_t delayMs) const
+	bool ShowAndDelay(uint32_t delayMs)
 	{
+		if (delayMs == 0)
+		{
+			if (_nextGfxShowTime <= millis())
+			{
+				_nextGfxShowTime = millis() + 1000 / 25; // 25 fps
+				Graphic()->Show();
+			}
+		}
+		else
+		{
+			Graphic()->Show();
+		}
+		
 		return _askContinue.Delay(delayMs);
 	}
 

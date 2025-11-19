@@ -41,7 +41,7 @@ public:
 		{
 			GFX()->drawChar(0, 0, 'a' + (count++) % 26, GFXExtension::Color565(255, 255, 0), GFXExtension::Color565(0, 0, 0), 1,1);
 
-			if (!Delay(delayTime))
+			if (!ShowAndDelay(delayTime))
 			{
 				return;
 			}

@@ -128,6 +128,7 @@ uint8_t GFXExtension::ScrollInRight(char ch, uint16_t delayTime, CAskContinue* a
 				}
 				mask *= 2;
 			}
+			Show();
 			askContinue->Delay(delayTime);
 		}
 	}

@@ -31,7 +31,7 @@ void CBox::Show()
 		for (int16_t x = 0; x < GFX()->height() / 2; x++)
 		{
 			GFX()->drawRect(x, x, GFX()->width() - (x * 2), GFX()->height() - (x * 2), GFXExtension::Color565(random(0, 255), random(0, 255), random(0, 255)));
-			if (!Delay(200))
+			if (!ShowAndDelay(200))
 				return;
 		}
 	}

@@ -4,19 +4,31 @@
 // https://github.com/adafruit/Adafruit_Protomatter
 // Board:Adafruit MatrixPortal ESP32-S3
 
-
 //////////////////////////////////////////////////////////////////////////////
 
 #include <LedAnimation.h>
 #include <sample.h>
 
-//#elif defined(ARDUINO_ADAFRUIT_MATRIXPORTAL_ESP32S3) // MatrixPortal ESP32-S3
+#define ARDUINO_ADAFRUIT_MATRIXPORTAL_ESP32S3
+//#define HA_MATRIX_ADAPTER_ESP32
+
+#if defined(ARDUINO_ADAFRUIT_MATRIXPORTAL_ESP32S3) // MatrixPortal ESP32-S3
 
 uint8_t rgbPins[]  = {42, 41, 40, 38, 39, 37};
 uint8_t addrPins[] = {45, 36, 48, 35, 21};
 uint8_t clockPin   = 2;
 uint8_t latchPin   = 47;
 uint8_t oePin      = 14;
+
+#elif defined(HA_MATRIX_ADAPTER_ESP32) // HA private build HUB75 MatrixAdapter ESP32-S3
+
+uint8_t rgbPins[]  = {2, 15, 4, 16, 27, 17};
+uint8_t addrPins[] = {5, 18, 19, 21, 12};
+uint8_t clockPin   = 22;
+uint8_t latchPin   = 26;
+uint8_t oePin      = 25;
+
+#endif
 
 Adafruit_Protomatter matrix(
   256,         // Width of matrix (or matrix chain) in pixels
@@ -117,22 +129,21 @@ void setup()
 
 //////////////////////////////////////////////////////////////////////////////
 
-long nextRedraw = 0;
+long nextEventTime = 0;
 
 void loop()
 {
-  // return;
   if (animations[animationsIdx]->IsEnabled())
   {
+    
     animations[animationsIdx]->SetAskContinue(0, [](int) -> bool {
-      if (nextRedraw < millis())
+      if (nextEventTime < millis())
       {
-        matrix.show();
-        nextRedraw = millis() + 1000 / 25;
+        nextEventTime = millis() + 1000 / 25;
       }
       return true;
     });
-
+  
     Serial.println("show");
     animations[animationsIdx]->Show();
   }

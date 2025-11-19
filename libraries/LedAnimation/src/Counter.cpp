@@ -130,7 +130,7 @@ void CCounter::Show()
 				barSize++;
 				nextMilli2 += addTime2;
 			}
-			if (!Delay(0))
+			if (!ShowAndDelay(0))
 				return;
 		}
 

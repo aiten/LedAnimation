@@ -55,7 +55,7 @@ public:
 					counter3 += (counter2 % 6) == 0 ? 1 : 0;
 				}
 			}
-			if (!Delay(100))
+			if (!ShowAndDelay(100))
 				return;
 		}
 	}

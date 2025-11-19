@@ -77,7 +77,7 @@ public:
 
 			GFX()->drawLine(x, y, GFX()->width()-x -1, GFX()->height() - y-1, GFXExtension::Color565(255, 255, 255));
 
-			if (!Delay(delayTime))
+			if (!ShowAndDelay(delayTime))
 			{
 				return;
 			}
