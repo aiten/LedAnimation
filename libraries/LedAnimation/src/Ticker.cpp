@@ -21,12 +21,13 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 
 ///////////////////////////////////////////////////////////////
 
-uint16_t CTicker::Gap(uint16_t delayTime)
+uint16_t CTicker::Gap(uint16_t delayTime,CAskContinue* askContinue)
 {
 	for (uint8_t i = 0; i < Graphic()->GetCharSizeMult(); i++)
 	{
 		Graphic()->ScrollLeft(_fillColor);
-		ShowAndDelay(delayTime);
+		Graphic()->Show(true);
+		askContinue->Delay(delayTime);
 	}
 
 	return NextPallet16Color(_textPalletColor);
@@ -67,7 +68,7 @@ void CTicker::Show()
 
 		if (_style == ScrollFromRight)
 		{
-			col = Gap(delayTimeMove);
+			col = Gap(delayTimeMove,GetAskContinue());
 		}
 		else
 		{
@@ -92,7 +93,7 @@ void CTicker::Show()
 				Graphic()->ScrollRangeDown(GFX()->height(), delayTimeMove, GetAskContinue(), _fillColor);
 				break;
 			}
-			col = Gap(delayTimeMove);
+			col = Gap(delayTimeMove,GetAskContinue());
 		}
 		ch++;
 	}

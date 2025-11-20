@@ -47,7 +47,7 @@ private:
 	uint8_t  _textPalletColor = GFXExtension::NoPallet16Color;
 
 	char     GetChar(const char* text) { return _isProgmem ? pgm_read_byte(text) : *text; }
-	uint16_t Gap(uint16_t delayTime);
+	uint16_t Gap(uint16_t delayTime,CAskContinue* askContinue);
 
 public:
 	CTicker(const char* text, ETickerType style = ScrollFromRight, uint16_t timeToMove = 0, int stopDelay = 1000) : super(0)

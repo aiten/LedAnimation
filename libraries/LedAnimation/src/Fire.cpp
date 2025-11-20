@@ -15,10 +15,10 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 */
 
 #include <Arduino.h>
-#include <FastLED.h>
 #include "GFXExtension.h"
 
 #include "Fire.h"
+#include "FireFromFastLED.h"
 //#include "lib8tion.h"
 
 ///////////////////////////////////////////////////////////////

@@ -34,10 +34,13 @@ const int defaultBrightness = (100 * 255) / 100; // full (100%) brightness
 #include <LedAnimation.h>
 #include <sample.h>
 
+long nextRedraw = 0;
+
 template <typename RGB, unsigned int optionFlags>
 class MyGraphic : public GFXExtension
 {
   SMLayerBackgroundGFX<RGB, optionFlags> *_layer;
+	uint32_t _nextGfxShowTime = 0;
 
 public:
   MyGraphic(SMLayerBackgroundGFX<RGB, optionFlags> *layer) : GFXExtension(layer)
@@ -48,6 +51,11 @@ public:
 protected:
   virtual void Show() override
   {
+      if (nextRedraw < millis())
+      {
+        backgroundLayer.swapBuffers();
+        nextRedraw = millis() + 1000 / 15;
+      }
   }
   virtual uint16_t getPixel(uint16_t x, uint16_t y) override
   {
@@ -131,19 +139,12 @@ void setup()
 
 //////////////////////////////////////////////////////////////////////////////
 
-long nextRedraw = 0;
-
 void loop()
 {
   // return;
   if (animations[animationsIdx]->IsEnabled())
   {
     animations[animationsIdx]->SetAskContinue(0, [](int) -> bool {
-      if (nextRedraw < millis())
-      {
-        backgroundLayer.swapBuffers();
-        nextRedraw = millis() + 1000 / 25;
-      }
       return true;
     });
 

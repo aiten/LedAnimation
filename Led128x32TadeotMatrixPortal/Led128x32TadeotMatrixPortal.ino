@@ -9,10 +9,14 @@
 #include <LedAnimation.h>
 #include <sample.h>
 
-#define ARDUINO_ADAFRUIT_MATRIXPORTAL_ESP32S3
-//#define HA_MATRIX_ADAPTER_ESP32
+//#define ARDUINO_ADAFRUIT_MATRIXPORTAL_ESP32S3
+#define HA_MATRIX_ADAPTER_ESP32
 
 #if defined(ARDUINO_ADAFRUIT_MATRIXPORTAL_ESP32S3) // MatrixPortal ESP32-S3
+
+const int FPS = 25;
+const int BITDEPTH = 5;
+const bool DOUBLEBUFFER = true;
 
 uint8_t rgbPins[]  = {42, 41, 40, 38, 39, 37};
 uint8_t addrPins[] = {45, 36, 48, 35, 21};
@@ -21,6 +25,10 @@ uint8_t latchPin   = 47;
 uint8_t oePin      = 14;
 
 #elif defined(HA_MATRIX_ADAPTER_ESP32) // HA private build HUB75 MatrixAdapter ESP32-S3
+
+const int FPS = 10;
+const int BITDEPTH = 4;
+const bool DOUBLEBUFFER = false;
 
 uint8_t rgbPins[]  = {2, 15, 4, 16, 27, 17};
 uint8_t addrPins[] = {5, 18, 19, 21, 12};
@@ -32,17 +40,19 @@ uint8_t oePin      = 25;
 
 Adafruit_Protomatter matrix(
   256,         // Width of matrix (or matrix chain) in pixels
-  4,           // Bit depth, 1-6
+  BITDEPTH,    // Bit depth, 1-6
   1, rgbPins,  // # of matrix chains, array of 6 RGB pins for each
   4, addrPins, // # of address pins (height is inferred), array of pins
   clockPin, latchPin, oePin, // Other matrix control pins
-  false);      // No double-buffering here (see "doublebuffer" example)
+  DOUBLEBUFFER);      // No double-buffering here (see "doublebuffer" example)
 
 
 class MyGraphic : public GFXExtension
 {
 
   Adafruit_Protomatter* _gfx;
+  long _nextRedraw = 0;
+
 
 public:
   MyGraphic(Adafruit_Protomatter* gfx) : GFXExtension(gfx)
@@ -51,9 +61,13 @@ public:
   };
 
 protected:
-  virtual void Show() override
+  virtual void Show(bool force) override
   {
-    _gfx->show();
+    if (force || _nextRedraw < millis())
+    {
+      _nextRedraw = millis() + (1000 / FPS);
+      _gfx->show();
+    }
   }
   virtual uint16_t getPixel(uint16_t x, uint16_t y) override
   {
@@ -116,6 +130,8 @@ void setup()
   Serial.begin(115200);
   randomSeed(analogRead(0));
 
+  //pinMode(LED_BUILTIN,OUTPUT);
+
   // Initialize matrix...
   ProtomatterStatus status = matrix.begin();
   Serial.print("Protomatter begin() status: ");
@@ -147,6 +163,8 @@ void loop()
     Serial.println("show");
     animations[animationsIdx]->Show();
   }
+
+  //digitalWrite(LED_BUILTIN,digitalRead(LED_BUILTIN)!);
 
   animationsIdx++;
 

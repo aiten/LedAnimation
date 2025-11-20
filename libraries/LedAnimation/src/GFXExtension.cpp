@@ -217,7 +217,7 @@ void GFXExtension::ScrollRange(uint8_t d, uint16_t x0, uint16_t y0, uint16_t x1,
 	for (uint8_t b = 0; b < d; b++)
 	{
 		Scroll(x0, y0, x1, y1, dx, dy, col);
-		Show();
+		Show(true);
 		askContinue->Delay(delayTime);
 	}
 }

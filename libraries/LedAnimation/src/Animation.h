@@ -63,12 +63,12 @@ public:
 			if (_nextGfxShowTime <= millis())
 			{
 				_nextGfxShowTime = millis() + 1000 / 25; // 25 fps
-				Graphic()->Show();
+				Graphic()->Show(false);
 			}
 		}
 		else
 		{
-			Graphic()->Show();
+			Graphic()->Show(false);
 		}
 		
 		return _askContinue.Delay(delayMs);

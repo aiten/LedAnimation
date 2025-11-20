@@ -70,7 +70,7 @@ public:
 
 	static const uint8_t NoPallet16Color;
 
-	virtual void     Show() =0;
+	virtual void     Show(bool force) =0;
 	virtual uint16_t getPixel(uint16_t x, uint16_t y) =0;
 
 	enum EColorPalett16Colors
